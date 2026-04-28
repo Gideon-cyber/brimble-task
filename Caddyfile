@@ -1,0 +1,21 @@
+{
+	admin 0.0.0.0:2019
+	auto_https off
+}
+
+:80 {
+	# Health check
+	handle /healthz {
+		respond "ok" 200
+	}
+
+	# Backend API
+	handle /api/* {
+		reverse_proxy backend:3001
+	}
+
+	# All other traffic goes to the frontend SPA
+	handle {
+		reverse_proxy frontend:80
+	}
+}
