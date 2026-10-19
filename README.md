@@ -113,3 +113,5 @@ All have defaults that work out-of-the-box with `docker compose up`. Override vi
 ## What I'd Rip Out
 
 The `buildkit` sidecar. Railpack can use the local Docker daemon via `BUILDKIT_HOST=docker-container://moby-buildkitd` or by starting its own ephemeral BuildKit instance. I added the explicit sidecar for reliability in the compose setup, but it adds a `privileged: true` container that's unnecessary if you're comfortable with Docker BuildKit's default behavior.
+
+
